@@ -1,4 +1,15 @@
 {
-  "name": "BE-Flowdash",
-  "packageManager": "yarn@4.9.1"
+  "name": "be-business-hub",
+  "packageManager": "yarn@4.9.1",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon src/api/index.js",
+    "start": "node src/api/index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
