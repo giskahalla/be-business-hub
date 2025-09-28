@@ -2,6 +2,7 @@
   "name": "be-business-hub",
   "packageManager": "yarn@4.9.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/api/index.js",
     "start": "node src/api/index.js"

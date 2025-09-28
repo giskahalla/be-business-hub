@@ -2,13 +2,13 @@
   "customers": [
     {
       "id": "CUS001",
-      "name": "Snow Bayaya ytdadainkanv",
+      "name": "Snow Bayaya ytdainkanvee",
       "company": "TechStart Inc",
       "status": 1,
       "updatedAt": "2024-01-01",
       "email": "snow@gmail.com",
       "address": "123 Main Street, Jakarta",
-      "contact": "+62-812-1111-1111",
+      "contact": "3548121121",
       "summary": {
         "total_projects": 5,
         "active_projects": 2,
@@ -18,13 +18,13 @@
     },
     {
       "id": "CUS002",
-      "name": "Lannister",
+      "name": "Lany Terra",
       "company": "Digital Dynamics",
       "status": 2,
       "updatedAt": "2024-01-02",
-      "email": "lannister@gmail.com",
+      "email": "lanny@gmail.com",
       "address": "45 Sunset Road, Bandung",
-      "contact": "+62-812-2222-2222",
+      "contact": "+628122222222",
       "summary": {
         "total_projects": 3,
         "active_projects": 1,
@@ -40,7 +40,7 @@
       "updatedAt": "2024-01-03",
       "email": "lannister@gmail.com",
       "address": "78 Ocean Avenue, Surabaya",
-      "contact": "+62-812-3333-3333",
+      "contact": "+628123333333",
       "summary": {
         "total_projects": 4,
         "active_projects": 2,
@@ -50,13 +50,13 @@
     },
     {
       "id": "CUS004",
-      "name": "Stark",
+      "name": "Marrie",
       "company": "Future Systems",
       "status": 1,
       "updatedAt": "2024-01-04",
-      "email": "stark@gmail.com",
+      "email": "marrie@gmail.com",
       "address": "99 Pine Street, Yogyakarta",
-      "contact": "+62-812-4444-4444",
+      "contact": "+628124444444",
       "summary": {
         "total_projects": 6,
         "active_projects": 4,
@@ -72,11 +72,11 @@
       "updatedAt": "2024-01-05",
       "email": "targaryen@gmail.com",
       "address": "12 Dragon Lane, Bali",
-      "contact": "+62-812-5555-5555",
+      "contact": "+6281-25555555",
       "summary": {
         "total_projects": 5,
         "active_projects": 3,
-        "total_spent": 340000, 
+        "total_spent": 340000,
         "total_revenue": 210000
       }
     },
@@ -88,13 +88,108 @@
       "updatedAt": "2024-01-06",
       "email": "melisandre@gmail.com",
       "address": "7 Flame Street, Medan",
-      "contact": "+62-812-6666-6666",
+      "contact": "+6281-26666666",
       "summary": {
         "total_projects": 7,
         "active_projects": 5,
         "total_spent": 1500000,
         "total_revenue": 90000
       }
+    },
+    {
+      "name": "Maya",
+      "company": "Acme Corp",
+      "email": "Maya@gmail.com",
+      "contact": "6535252535",
+      "address": "St.Brew 007",
+      "id": "CUS007",
+      "status": 2
+    }
+  ],
+  "projects": [
+    {
+      "id": "PRJ001",
+      "name": "E-commerce Platform",
+      "client": "Acme Corp",
+      "status": 1,
+      "priority": 2,
+      "progress": 35,
+      "budget": {
+        "used": 32053,
+        "total": 81208
+      },
+      "due_date": "2025-09-27",
+      "assignee_name": "Emily Davis"
+    },
+    {
+      "id": "PRJ002",
+      "name": "Website Redesign",
+      "client": "Global Solutions",
+      "status": 3,
+      "priority": 2,
+      "progress": 48,
+      "budget": {
+        "used": 35400,
+        "total": 68709
+      },
+      "due_date": "2025-10-27",
+      "assignee_name": "Emily Davis"
+    },
+    {
+      "id": "PRJ003",
+      "name": "Data Analytics",
+      "client": "Innovation Labs",
+      "status": 4,
+      "priority": 3,
+      "progress": 7,
+      "budget": {
+        "used": 4965,
+        "total": 15156
+      },
+      "due_date": "2025-10-26",
+      "assignee_name": "Alex Rodriguez"
+    },
+    {
+      "id": "PRJ004",
+      "name": "Website Redesign",
+      "client": "Global Solutions",
+      "status": 1,
+      "priority": 3,
+      "progress": 82,
+      "budget": {
+        "used": 39135,
+        "total": 43606
+      },
+      "due_date": "2025-10-12",
+      "assignee_name": "Jessica Kim"
+    },
+    {
+      "id": "PRJ005",
+      "name": "Mobile App",
+      "client": "Innovation Labs",
+      "status": 1,
+      "priority": 2,
+      "progress": 79,
+      "budget": {
+        "used": 50533,
+        "total": 58637
+      },
+      "due_date": "2025-11-19",
+      "assignee_name": "Alex Rodriguez"
+    },
+    {
+      "id": "PRJ006",
+      "name": "Mobile App",
+      "client": "Innovation Labs",
+      "status": 1,
+      "priority": 2,
+      "progress": 79,
+      "budget": {
+        "used": 50533,
+        "total": 58637
+      },
+      "due_date": "2025-11-19",
+      "assignee_name": "Alex Rodriguez"
     }
   ]
 }

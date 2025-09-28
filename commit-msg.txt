@@ -1,0 +1,4 @@
+update 28/09/25
+
+- Add API for creating and updating customer
+- Add API for get projects
