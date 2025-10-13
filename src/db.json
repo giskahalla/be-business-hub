@@ -111,7 +111,7 @@
       "id": "PRJ001",
       "name": "E-commerce Platform",
       "client": "Acme Corp",
-      "status": 1,
+      "status": 2,
       "priority": 2,
       "progress": 35,
       "budget": {
@@ -119,7 +119,7 @@
         "total": 81208
       },
       "due_date": "2025-09-27",
-      "assignee_name": "Emily Davis"
+      "assignee": "Emily Davis"
     },
     {
       "id": "PRJ002",
@@ -133,7 +133,7 @@
         "total": 68709
       },
       "due_date": "2025-10-27",
-      "assignee_name": "Emily Davis"
+      "assignee": "Emily Davis"
     },
     {
       "id": "PRJ003",
@@ -147,13 +147,13 @@
         "total": 15156
       },
       "due_date": "2025-10-26",
-      "assignee_name": "Alex Rodriguez"
+      "assignee": "Alex Rodriguez"
     },
     {
       "id": "PRJ004",
       "name": "Website Redesign",
       "client": "Global Solutions",
-      "status": 1,
+      "status": 0,
       "priority": 3,
       "progress": 82,
       "budget": {
@@ -161,12 +161,12 @@
         "total": 43606
       },
       "due_date": "2025-10-12",
-      "assignee_name": "Jessica Kim"
+      "assignee": "Jessica Kim"
     },
     {
       "id": "PRJ005",
-      "name": "Mobile App",
-      "client": "Innovation Labs",
+      "name": "Web app responsive",
+      "client": "COM002",
       "status": 1,
       "priority": 2,
       "progress": 79,
@@ -174,13 +174,26 @@
         "used": 50533,
         "total": 58637
       },
-      "due_date": "2025-11-19",
-      "assignee_name": "Alex Rodriguez"
+      "due_date": "2026-04-30",
+      "assignee": "MEM002",
+      "company_name": "Megaree Inc",
+      "assignee_name": "Alex Rodriguez",
+      "desc": "Develop new brand",
+      "start_date": "2025-10-21",
+      "tasks": [
+        {
+          "title": "Brainstorming the idea",
+          "status": "done"
+        },
+        {
+          "title": "design user interface"
+        }
+      ]
     },
     {
       "id": "PRJ006",
-      "name": "Mobile App",
-      "client": "Innovation Labs",
+      "name": "Mobile App fRe",
+      "client": "COM001",
       "status": 1,
       "priority": 2,
       "progress": 79,
@@ -189,7 +202,40 @@
         "total": 58637
       },
       "due_date": "2025-11-19",
-      "assignee_name": "Alex Rodriguez"
+      "desc": "Redesigning mobile app",
+      "assignee": "MEM001",
+      "start_date": "2025-10-22",
+      "tasks": [
+        {
+          "title": "Build prototype"
+        }
+      ]
+    }
+  ],
+  "companies": [
+    {
+      "id": "COM001",
+      "name": "TechStart Inc",
+      "address": "123 Main Street, Jakarta"
+    },
+    {
+      "id": "COM002",
+      "name": "Megaree Inc",
+      "address": "123 Main Street, Jakarta"
+    }
+  ],
+  "members": [
+    {
+      "id": "MEM001",
+      "name": "Emily Davis",
+      "role": "Project Manager",
+      "email": "Davis@gmail.com"
+    },
+    {
+      "id": "MEM002",
+      "name": "Alex Rodriguez",
+      "role": "Developer",
+      "email": "rodgee@gmail.com"
     }
   ]
 }

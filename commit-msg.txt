@@ -1,4 +1,4 @@
-update 28/09/25
+update 13/10/25
 
-- Add API for creating and updating customer
-- Add API for get projects
+- Add Project GET, CREATE, and UPDATE APIs
+- Add GET Company and Member APIs
