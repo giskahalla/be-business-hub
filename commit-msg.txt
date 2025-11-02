@@ -1,4 +1,3 @@
-update 13/10/25
+update 02/11/25
 
-- Add Project GET, CREATE, and UPDATE APIs
-- Add GET Company and Member APIs
+- Improve project create/update logic to also update member and customer data

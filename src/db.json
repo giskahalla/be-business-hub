@@ -1,100 +1,88 @@
 {
+  "projects": [
+    {
+      "name": "Website redesign",
+      "desc": "Develop",
+      "priority": 2,
+      "budget": {
+        "estimated": "2500"
+      },
+      "client": "CUS002",
+      "assignee": "MEM001",
+      "start_date": "2026-01-05",
+      "due_date": "2026-04-30",
+      "tasks": [
+        {
+          "title": "brainstorming idea"
+        }
+      ],
+      "id": "PRJ001",
+      "status": 1
+    }
+  ],
   "customers": [
     {
       "id": "CUS001",
       "name": "Snow Bayaya ytdainkanvee",
       "company": "TechStart Inc",
       "status": 1,
-      "updatedAt": "2024-01-01",
+      "updatedAt": "2024-01-01 13:45",
       "email": "snow@gmail.com",
       "address": "123 Main Street, Jakarta",
-      "contact": "3548121121",
-      "summary": {
-        "total_projects": 5,
-        "active_projects": 2,
-        "total_spent": 350000,
-        "total_revenue": 210000
-      }
+      "contact": "3548121121"
     },
     {
       "id": "CUS002",
       "name": "Lany Terra",
       "company": "Digital Dynamics",
       "status": 2,
-      "updatedAt": "2024-01-02",
+      "updatedAt": "2024-01-02 09:30",
       "email": "lanny@gmail.com",
       "address": "45 Sunset Road, Bandung",
       "contact": "+628122222222",
-      "summary": {
-        "total_projects": 3,
-        "active_projects": 1,
-        "total_spent": 420000,
-        "total_revenue": 330000
-      }
+      "projects": [
+        "PRJ001"
+      ]
     },
     {
       "id": "CUS003",
       "name": "Lannister",
       "company": "Innovation Labs",
       "status": 1,
-      "updatedAt": "2024-01-03",
+      "updatedAt": "2024-01-03 15:20",
       "email": "lannister@gmail.com",
       "address": "78 Ocean Avenue, Surabaya",
-      "contact": "+628123333333",
-      "summary": {
-        "total_projects": 4,
-        "active_projects": 2,
-        "total_spent": 450000,
-        "total_revenue": 410000
-      }
+      "contact": "+628123333333"
     },
     {
       "id": "CUS004",
       "name": "Marrie",
       "company": "Future Systems",
       "status": 1,
-      "updatedAt": "2024-01-04",
+      "updatedAt": "2024-01-04 11:15",
       "email": "marrie@gmail.com",
       "address": "99 Pine Street, Yogyakarta",
-      "contact": "+628124444444",
-      "summary": {
-        "total_projects": 6,
-        "active_projects": 4,
-        "total_spent": 160000,
-        "total_revenue": 98000
-      }
+      "contact": "+628124444444"
     },
     {
       "id": "CUS005",
       "name": "Targaryen",
       "company": "Global Solutions",
       "status": 2,
-      "updatedAt": "2024-01-05",
+      "updatedAt": "2024-01-05 08:50",
       "email": "targaryen@gmail.com",
       "address": "12 Dragon Lane, Bali",
-      "contact": "+6281-25555555",
-      "summary": {
-        "total_projects": 5,
-        "active_projects": 3,
-        "total_spent": 340000,
-        "total_revenue": 210000
-      }
+      "contact": "+6281-25555555"
     },
     {
       "id": "CUS006",
       "name": "Melisandre",
       "company": "Acme Corp",
       "status": 1,
-      "updatedAt": "2024-01-06",
+      "updatedAt": "2024-01-06 14:05",
       "email": "melisandre@gmail.com",
       "address": "7 Flame Street, Medan",
-      "contact": "+6281-26666666",
-      "summary": {
-        "total_projects": 7,
-        "active_projects": 5,
-        "total_spent": 1500000,
-        "total_revenue": 90000
-      }
+      "contact": "+6281-26666666"
     },
     {
       "name": "Maya",
@@ -106,136 +94,29 @@
       "status": 2
     }
   ],
-  "projects": [
-    {
-      "id": "PRJ001",
-      "name": "E-commerce Platform",
-      "client": "Acme Corp",
-      "status": 2,
-      "priority": 2,
-      "progress": 35,
-      "budget": {
-        "used": 32053,
-        "total": 81208
-      },
-      "due_date": "2025-09-27",
-      "assignee": "Emily Davis"
-    },
-    {
-      "id": "PRJ002",
-      "name": "Website Redesign",
-      "client": "Global Solutions",
-      "status": 3,
-      "priority": 2,
-      "progress": 48,
-      "budget": {
-        "used": 35400,
-        "total": 68709
-      },
-      "due_date": "2025-10-27",
-      "assignee": "Emily Davis"
-    },
-    {
-      "id": "PRJ003",
-      "name": "Data Analytics",
-      "client": "Innovation Labs",
-      "status": 4,
-      "priority": 3,
-      "progress": 7,
-      "budget": {
-        "used": 4965,
-        "total": 15156
-      },
-      "due_date": "2025-10-26",
-      "assignee": "Alex Rodriguez"
-    },
-    {
-      "id": "PRJ004",
-      "name": "Website Redesign",
-      "client": "Global Solutions",
-      "status": 0,
-      "priority": 3,
-      "progress": 82,
-      "budget": {
-        "used": 39135,
-        "total": 43606
-      },
-      "due_date": "2025-10-12",
-      "assignee": "Jessica Kim"
-    },
-    {
-      "id": "PRJ005",
-      "name": "Web app responsive",
-      "client": "COM002",
-      "status": 1,
-      "priority": 2,
-      "progress": 79,
-      "budget": {
-        "used": 50533,
-        "total": 58637
-      },
-      "due_date": "2026-04-30",
-      "assignee": "MEM002",
-      "company_name": "Megaree Inc",
-      "assignee_name": "Alex Rodriguez",
-      "desc": "Develop new brand",
-      "start_date": "2025-10-21",
-      "tasks": [
-        {
-          "title": "Brainstorming the idea",
-          "status": "done"
-        },
-        {
-          "title": "design user interface"
-        }
-      ]
-    },
-    {
-      "id": "PRJ006",
-      "name": "Mobile App fRe",
-      "client": "COM001",
-      "status": 1,
-      "priority": 2,
-      "progress": 79,
-      "budget": {
-        "used": 50533,
-        "total": 58637
-      },
-      "due_date": "2025-11-19",
-      "desc": "Redesigning mobile app",
-      "assignee": "MEM001",
-      "start_date": "2025-10-22",
-      "tasks": [
-        {
-          "title": "Build prototype"
-        }
-      ]
-    }
-  ],
-  "companies": [
-    {
-      "id": "COM001",
-      "name": "TechStart Inc",
-      "address": "123 Main Street, Jakarta"
-    },
-    {
-      "id": "COM002",
-      "name": "Megaree Inc",
-      "address": "123 Main Street, Jakarta"
-    }
-  ],
   "members": [
     {
       "id": "MEM001",
       "name": "Emily Davis",
       "role": "Project Manager",
-      "email": "Davis@gmail.com"
+      "email": "Davis@gmail.com",
+      "department": "Management",
+      "status": 1,
+      "joinedAt": "2023-05-10 10:30",
+      "contact": "+6281-26666666",
+      "projects": [
+        "PRJ001"
+      ]
     },
     {
       "id": "MEM002",
       "name": "Alex Rodriguez",
       "role": "Developer",
-      "email": "rodgee@gmail.com"
+      "email": "rodgee@gmail.com",
+      "department": "Engineering",
+      "status": 2,
+      "joinedAt": "2023-10-12 09:00",
+      "contact": "+6281-23525363"
     }
   ]
 }
