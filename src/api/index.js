@@ -78,8 +78,8 @@ app.use(function(req, res, next) {
   });
 
   app.post('/create/project', (req, res) => {
-    const { data } = req.body
-    const { assignee, client, budget } = data || {}
+    const { body } = req
+    const { assignee, client, budget } = body || {}
 
     if (!data || !client || !assignee) {
       return res.status(400).json({ error: "Missing required fields: client or assignee" });
@@ -121,42 +121,65 @@ app.use(function(req, res, next) {
   });
 
    app.post('/update/project', (req, res) => {
-    const { data } = req.body
-    const { assignee, client, spent } = data || {}
+    const { body } = req
+    const { assignee, client, used, tasks, status } = body || {}
 
-    const projectIndex = projects.findIndex(project => project.id === data.id);
+    if (!body.id) {
+    return res.status(400).json({ message: 'Project ID is required' });
+  }
+
+    const projectIndex = projects.findIndex(project => project.id === body.id);
     
     if (projectIndex === -1) {
         return res.status(404).json({ message: 'Project not found' });
     }
     
-    projects[projectIndex] = { ...projects[projectIndex], ...data, budget: {
-        ...projects[projectIndex].budget.estimated,
-        used: spent !== undefined ? spent : projects[projectIndex].budget.spent,
+    const newProjectId = body.id;
+
+    const inProgress = tasks.some(task => task.status === 'done')
+    const isCompleted = tasks.every(task => task.status === 'done')
+
+    projects[projectIndex] = { 
+      ...projects[projectIndex], 
+      ...body, 
+      status:  inProgress ? 2 : (isCompleted ? 4 : status),
+      budget: {
+        estimated: projects[projectIndex].budget.estimated,
+        used: used !== undefined ? used : projects[projectIndex].budget.used,
       } 
     };
 
-    const newProjectId = data.id;
-
     if (client) {
-        if (!customers[client].projects) {
-            customers[client].projects = [];
+      const customer = customers.find(cust => cust.id === client);
+        if (!customer) {
+          return res.status(400).json({ message: 'Client not found' });
         }
-        customers[client] = {
-            ...customers[client],
-            projects: [...customers[client].projects, newProjectId],
-        };
+
+        if (!customer.projects) {
+            customer.projects = [];
+        }
+
+        if (!customer.projects.includes(newProjectId)) {
+          customer.projects.push(newProjectId); 
+        }
     }
 
     if (assignee) {
-        if (!members[assignee].projects) {
-            members[assignee].projects = [];
+      const member = members.find(mem => mem.id === assignee);
+        if (!member) {
+          return res.status(400).json({ message: 'Client not found' });
         }
-        members[assignee] = {
-            ...members[assignee],
-            projects: [...members[assignee].projects, newProjectId],
-        };
+        
+        if (!member.projects) {
+            member.projects = [];
+        }
+        
+        if (!member.projects.includes(newProjectId)) {
+          member.projects.push(newProjectId);
+        }
     }
+
+    const db = { projects, customers, members };
 
     writeFileSync(dbFile, JSON.stringify(db, null, 2));
     res.json({project: projects[projectIndex]});

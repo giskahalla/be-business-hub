@@ -2,10 +2,11 @@
   "projects": [
     {
       "name": "Website redesign",
-      "desc": "Develop",
+      "desc": "Develop new design",
       "priority": 2,
       "budget": {
-        "estimated": "2500"
+        "estimated": "2500",
+        "used": "25"
       },
       "client": "CUS002",
       "assignee": "MEM001",
@@ -13,11 +14,18 @@
       "due_date": "2026-04-30",
       "tasks": [
         {
-          "title": "brainstorming idea"
+          "title": "brainstorming idea",
+          "status": "done"
+        },
+        {
+          "title": "create the wireframe"
         }
       ],
       "id": "PRJ001",
-      "status": 1
+      "status": 2,
+      "client_name": "Lany Terra",
+      "assignee_name": "Emily Davis",
+      "used": "25"
     }
   ],
   "customers": [
@@ -117,6 +125,22 @@
       "status": 2,
       "joinedAt": "2023-10-12 09:00",
       "contact": "+6281-23525363"
+    }
+  ],
+  "companies": [
+    {
+      "id": "COM001",
+      "name": "TechStart Inc",
+      "address": "Jakarta, Indonesia",
+      "contact": {
+        "phone": "+628112345678",
+        "email": "sarah@techcorp.com",
+        "name": "Sarah Johnson"
+      },
+      "employees": [
+        "CUS001"
+      ],
+      "status": 1
     }
   ]
 }
