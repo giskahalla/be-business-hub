@@ -8,10 +8,11 @@
         "estimated": "2500",
         "used": "25"
       },
+      "createdAt": "2025-11-20 10:00",
       "client": "CUS002",
       "assignee": "MEM001",
-      "start_date": "2026-01-05",
-      "due_date": "2026-04-30",
+      "start_date": "2025-01-05",
+      "due_date": "2025-04-30",
       "tasks": [
         {
           "title": "brainstorming idea",
@@ -26,28 +27,55 @@
       "client_name": "Lany Terra",
       "assignee_name": "Emily Davis",
       "used": "25"
+    },
+    {
+      "name": "Mobile App",
+      "company": "",
+      "email": "",
+      "contact": "",
+      "address": "",
+      "priority": 1,
+      "client": "CUS004",
+      "assignee": "MEM002",
+      "budget": {
+        "estimated": "5000"
+      },
+      "start_date": "2025-11-01",
+      "due_date": "2026-03-31",
+      "tasks": [
+        {
+          "title": "Meeting"
+        },
+        {
+          "title": "Ui completion"
+        }
+      ],
+      "id": "PRJ002",
+      "status": 1,
+      "joinedAt": "2025-12-01 13:46"
     }
   ],
   "customers": [
     {
       "id": "CUS001",
       "name": "Snow Bayaya ytdainkanvee",
-      "company": "TechStart Inc",
+      "company": "COM001",
       "status": 1,
-      "updatedAt": "2024-01-01 13:45",
+      "createdAt": "2025-06-01 13:45",
       "email": "snow@gmail.com",
       "address": "123 Main Street, Jakarta",
-      "contact": "3548121121"
+      "contact": "+354 8121123",
+      "company_name": "TechStart Inc"
     },
     {
       "id": "CUS002",
       "name": "Lany Terra",
       "company": "Digital Dynamics",
       "status": 2,
-      "updatedAt": "2024-01-02 09:30",
+      "createdAt": "2025-01-02 09:30",
       "email": "lanny@gmail.com",
       "address": "45 Sunset Road, Bandung",
-      "contact": "+628122222222",
+      "contact": "+62 8122222222",
       "projects": [
         "PRJ001"
       ]
@@ -55,51 +83,54 @@
     {
       "id": "CUS003",
       "name": "Lannister",
-      "company": "Innovation Labs",
       "status": 1,
-      "updatedAt": "2024-01-03 15:20",
+      "createdAt": "2025-10-03 15:20",
       "email": "lannister@gmail.com",
       "address": "78 Ocean Avenue, Surabaya",
-      "contact": "+628123333333"
+      "contact": "+62 8123333333"
     },
     {
       "id": "CUS004",
       "name": "Marrie",
-      "company": "Future Systems",
       "status": 1,
-      "updatedAt": "2024-01-04 11:15",
+      "createdAt": "2025-03-04 11:15",
       "email": "marrie@gmail.com",
       "address": "99 Pine Street, Yogyakarta",
-      "contact": "+628124444444"
+      "contact": "+62 8124444444",
+      "projects": [
+        "PRJ002"
+      ]
     },
     {
       "id": "CUS005",
       "name": "Targaryen",
-      "company": "Global Solutions",
       "status": 2,
-      "updatedAt": "2024-01-05 08:50",
+      "createdAt": "2025-09-05 08:50",
       "email": "targaryen@gmail.com",
       "address": "12 Dragon Lane, Bali",
-      "contact": "+6281-25555555"
+      "contact": "+62 8125555555"
     },
     {
       "id": "CUS006",
       "name": "Melisandre",
-      "company": "Acme Corp",
       "status": 1,
-      "updatedAt": "2024-01-06 14:05",
+      "createdAt": "2025-11-06 14:05",
       "email": "melisandre@gmail.com",
       "address": "7 Flame Street, Medan",
-      "contact": "+6281-26666666"
+      "contact": "+62 8126666667",
+      "company_name": "-",
+      "company": "COM001"
     },
     {
       "name": "Maya",
-      "company": "Acme Corp",
       "email": "Maya@gmail.com",
-      "contact": "6535252535",
+      "contact": "+65 35252532",
       "address": "St.Brew 007",
       "id": "CUS007",
-      "status": 2
+      "status": 2,
+      "company_name": "Starlink",
+      "company": "COM002",
+      "createdAt": "2025-07-06 14:05"
     }
   ],
   "members": [
@@ -111,7 +142,7 @@
       "department": "Management",
       "status": 1,
       "joinedAt": "2023-05-10 10:30",
-      "contact": "+6281-26666666",
+      "contact": "+62 8126666634",
       "projects": [
         "PRJ001"
       ]
@@ -124,23 +155,10 @@
       "department": "Engineering",
       "status": 2,
       "joinedAt": "2023-10-12 09:00",
-      "contact": "+6281-23525363"
-    }
-  ],
-  "companies": [
-    {
-      "id": "COM001",
-      "name": "TechStart Inc",
-      "address": "Jakarta, Indonesia",
-      "contact": {
-        "phone": "+628112345678",
-        "email": "sarah@techcorp.com",
-        "name": "Sarah Johnson"
-      },
-      "employees": [
-        "CUS001"
-      ],
-      "status": 1
+      "contact": "+62 8123525234",
+      "projects": [
+        "PRJ002"
+      ]
     }
   ]
 }

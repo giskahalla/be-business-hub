@@ -1,27 +1,59 @@
-import fetch from "node-fetch";
+import { readFileSync  } from 'fs';
 
-fetch("http://localhost:5050/update/project", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    "name": "Website redesign",
-    "desc": "Develop New design",
-    "priority": 2,
-    "client": "CUS002",
-    "assignee": "MEM001",
-    "start_date": "2026-01-05",
-    "due_date": "2026-04-30",
-    "tasks": [
-      {
-        "title": "brainstorming idea"
+const dbFile = new URL("../db.json", import.meta.url).pathname;
+let db = JSON.parse(readFileSync(dbFile, "utf-8"));
+
+const customers = db.customers;
+const projects = db.projects;
+const companies = db.companies;
+const members = db.members;
+
+
+function test() {
+   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    const filtered = projects.filter(item => {
+      const start = new Date(item.start_date);
+      const end = new Date(item.completedAt);
+      return (
+        start.getFullYear() === 2025 ||
+        end.getFullYear() === 2025
+      );
+    });
+
+    const monthlySummary = {};
+
+    months.forEach(m => {
+      monthlySummary[m] = { revenue: 0, project: 0, active: 0, completed: 0 };
+    });
+
+    filtered.forEach(proj => {
+      const start = new Date(proj.start_date);
+      const monthName = months[start.getMonth()];
+      const budget = Number(proj.budget?.estimated || 0);
+      const completedAt = proj.completedAt ? new Date(proj.completedAt) : null;
+
+      monthlySummary[monthName].revenue += budget;
+      monthlySummary[monthName].project += 1;
+
+      if (!completedAt) {
+        monthlySummary[monthName].active += 1;
+      } else if (completedAt.getFullYear() === year) {
+        const completedMonth = months[completedAt.getMonth()];
+        monthlySummary[completedMonth].completed += 1;
       }
-    ],
-    "id": "PRJ001",
-    "status": 1,
-    "client_name": "Lany Terra",
-    "assignee_name": "Emily Davis"
-  })
-})
-.then(json => console.log(json))  
-.catch(err => console.error("Error:", err)); 
+
+      console.log(monthlySummary[monthName])
+    });
+
+    const total_revenue = filtered.reduce((acc, p) => acc + Number(p.budget?.estimated || 0), 0);
+
+    const summaries = {
+      monthlySummary,
+      total_revenue,
+    };
+    console.log(summaries);
+}
+
+test();
 

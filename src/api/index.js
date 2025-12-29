@@ -3,8 +3,7 @@
 import express from 'express';
 import { readFileSync, writeFileSync } from 'fs';
 
-import { generateCustomerId, generateProjectId } from '../handler/index.js';
-
+import { generateId } from '../handler/index.js';
 
 const app = express()
 
@@ -32,10 +31,23 @@ app.use(function(req, res, next) {
 
   app.post('/create/customer', (req, res) => {
     const newCustomer = {
-      ...req.body.data,
-      id: generateCustomerId(customers),
-      status: 2
+      ...req.body,
+      id: generateId(customers, "CUS"),
+      status: 2,
+      createdAt: new Date().toISOString().replace("T", " ").substring(0, 16)
     };
+
+    if (company) {
+      const comp = companies.find(co => co.id === company);
+        
+        if (!comp.projects) {
+            newCustomer.employees = [];
+        }
+        
+        if (!comp.employees.includes(company)) {
+          newCustomer.projects.push(company);
+        }
+    }
     
     customers.push(newCustomer);
     writeFileSync(dbFile, JSON.stringify(db, null, 2));
@@ -44,18 +56,35 @@ app.use(function(req, res, next) {
   });
 
   app.post('/update/customer', (req, res) => {
-    const { data } = req.body
+    const { body } = req
+    const { company } = body || {}
 
-     const customerIndex = customers.findIndex(customer => customer.id === data.id);
+    if (!company) {
+      return res.status(400).json({ error: "Missing required fields: company" });
+    }
+
+     const customerIndex = customers.findIndex(customer => customer.id === body.id);
     
     if (customerIndex === -1) {
         return res.status(404).json({ message: 'Customer not found' });
     }
     
-    customers[customerIndex] = { ...customers[customerIndex], ...data };
+    customers[customerIndex] = { ...customers[customerIndex], ...body };
+
+    if (company) {
+      const comp = companies.find(co => co.id === company);
+        
+        if (!comp.projects) {
+            comp.employees = [];
+        }
+        
+        if (!comp.employees.includes(company)) {
+          comp.employees.push(company);
+        }
+    }
 
     writeFileSync(dbFile, JSON.stringify(db, null, 2));
-    res.json({customer: customers[customerIndex]});
+    res.json({customer: customers[customerIndex], });
     
   });
 
@@ -81,14 +110,15 @@ app.use(function(req, res, next) {
     const { body } = req
     const { assignee, client, budget } = body || {}
 
-    if (!data || !client || !assignee) {
+    if (!client || !assignee) {
       return res.status(400).json({ error: "Missing required fields: client or assignee" });
     }
 
     const newProject = {
-      ...data,
-      id: generateProjectId(projects),
+      ...body,
+      id: generateId(projects, "PRJ"),
       status: 1,
+      joinedAt: new Date().toISOString().replace("T", " ").substring(0, 16),
       budget: { estimated: budget || 0 }
     };
 
@@ -120,7 +150,7 @@ app.use(function(req, res, next) {
     res.json({ project: newProject });
   });
 
-   app.post('/update/project', (req, res) => {
+  app.post('/update/project', (req, res) => {
     const { body } = req
     const { assignee, client, used, tasks, status } = body || {}
 
@@ -143,6 +173,7 @@ app.use(function(req, res, next) {
       ...projects[projectIndex], 
       ...body, 
       status:  inProgress ? 2 : (isCompleted ? 4 : status),
+      ...(isCompleted && { completedAt: new Date().toISOString().replace("T", " ").substring(0, 16) }),
       budget: {
         estimated: projects[projectIndex].budget.estimated,
         used: used !== undefined ? used : projects[projectIndex].budget.used,
@@ -190,8 +221,169 @@ app.use(function(req, res, next) {
     res.json({companies: companies});
   });
 
+  app.post('/create/company', (req, res) => {
+    const newCompany = {
+      ...req.body,
+      id: generateId(companies, "COM"),
+      status: 2
+    };
+    
+    companies.push(newCompany);
+    writeFileSync(dbFile, JSON.stringify(db, null, 2));
+    
+    res.json({company: newCompany});
+  });
+
+  app.post('/update/company', (req, res) => {
+    const { body } = req
+
+     const companyIndex = companies.findIndex(company => company.id === body.id);
+    
+    if (companyIndex === -1) {
+        return res.status(404).json({ message: 'Company not found' });
+    }
+    
+    companies[companyIndex] = { ...companies[companyIndex], ...body };
+
+    writeFileSync(dbFile, JSON.stringify(db, null, 2));
+    res.json({company: companies[companyIndex]});
+    
+  });
+
   app.get('/get/members', (req, res) => {
     res.json({members: members});
+  });
+
+  app.post('/create/member', (req, res) => {
+    const newMember = {
+      ...req.body,
+      id: generateId(members, "MEM"),
+      status: 2
+    };
+    
+    members.push(newMember);
+    writeFileSync(dbFile, JSON.stringify(db, null, 2));
+    
+    res.json({member: newMember});
+  });
+
+  app.post('/update/member', (req, res) => {
+    const { body } = req
+
+     const memberIndex = members.findIndex(member => member.id === body.id);
+    
+    if (memberIndex === -1) {
+        return res.status(404).json({ message: 'Member not found' });
+    }
+    
+    members[memberIndex] = { ...members[memberIndex], ...body };
+
+    writeFileSync(dbFile, JSON.stringify(db, null, 2));
+    res.json({member: members[memberIndex]});
+    
+  });
+
+  app.get('/get/projects/summary', (req, res) => {
+    const { year } = req.query; 
+
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    const filtered = projects.filter(item => {
+      const start = new Date(item.start_date);
+      const end = new Date(item.completedAt);
+      return (
+        start.getFullYear() === Number(year) ||
+        end.getFullYear() === Number(year)
+      );
+    });
+
+    const monthlyMap = {};
+
+    months.forEach(m => {
+      monthlyMap[m] = { revenue: 0, project: 0, active: 0, completed: 0 };
+    });
+
+    filtered.forEach(proj => {
+      const start = new Date(proj.start_date);
+      const monthName = months[start.getMonth()];
+      const budget = Number(proj.budget?.estimated || 0);
+      // const completedAt = proj.completedAt ? new Date(proj.completedAt) : null;
+
+      monthlyMap[monthName].revenue += budget;
+      monthlyMap[monthName].project += 1;
+
+      if (proj.status === 4) {
+        monthlyMap[monthName].completed += 1;
+      } else if (proj.status === 2) {
+        monthlyMap[monthName].active += 1;
+      }
+
+      // if (!completedAt) {
+      //   monthlyMap[monthName].active += 1;
+      // } else if (completedAt.getFullYear() === year) {
+      //   const completedMonth = months[completedAt.getMonth()];
+      //   monthlyMap[completedMonth].completed += 1;
+      // }
+    });
+
+    const monthlySummary = Object.entries(monthlyMap).map(
+      ([month, data]) => ({
+        month,
+        ...data,
+      })
+    );
+
+    const total_revenue = filtered.reduce((acc, p) => acc + Number(p.budget?.estimated || 0), 0);
+
+    const summaries = {
+      monthlySummary,
+      total_revenue,
+    };
+
+    res.json({summaries: summaries});
+  });
+
+  app.get('/get/customers/summary', (req, res) => {
+    const { year } = req.query; 
+
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    const filtered = customers.filter(item => {
+      const date = new Date(item.createdAt);
+      return (
+        date.getFullYear() === Number(year) 
+      );
+    });
+
+    const monthlyMap = {};
+
+    months.forEach(m => {
+      monthlyMap[m] = { total: 0 };
+    });
+
+    filtered.forEach(proj => {
+      const created = new Date(proj.createdAt);
+      const monthName = months[created.getMonth()];
+
+      monthlyMap[monthName].total += 1;
+
+    });
+
+    const monthlySummary = Object.entries(monthlyMap).map(
+      ([month, data]) => ({
+        month,
+        ...data,
+      })
+    );
+
+    const total_customers = filtered?.length 
+
+    const summaries = {
+      monthlySummary,
+      total_customers,
+    };
+
+    res.json({summaries: summaries});
   });
       
 app.listen(5050, () => {})
